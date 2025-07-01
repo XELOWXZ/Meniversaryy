@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>💖 วันครบรอบของเรา 💖</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="welcome">
+
+  <h1>💘 สุขสันต์วันครบรอบ 💘</h1>
+  <p>ขอบคุณที่อยู่ด้วยกันมาตลอดนะครับ</p>
+
+  <div class="password-box">
+    <p>ใส่รหัสลับเพื่อเข้าเล่นเกม:</p>
+    <input type="password" id="passwordInput" placeholder="ใส่รหัสเช่น 14/02/65 วัน / เดือน / ปี ">
+    <button onclick="checkPassword()">เริ่มเลย!</button>
+  </div>
+
+
+<div class="volume-control">
+  <label for="volumeSlider">ปรับเสียงเพลง 🎵</label><br>
+  <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" />
+</div>
+
+  <script src="hearts.js"></script>
+
+  <script>
+    function checkPassword() {
+      const pass = document.getElementById("passwordInput").value;
+      if (pass === "10625") {
+        window.location.href = "quiz.html";
+      } else {
+        alert("รหัสผิดจ้า ลองอีกทีนะ!");
+      }
+    }
+  </script>
+</body>
+</html>

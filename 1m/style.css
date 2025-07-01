@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Mali&display=swap');
+
+body {
+  font-family: 'Mali', cursive;
+  background: linear-gradient(135deg, #fff0f5, #ffd9e8);
+  margin: 0;
+  text-align: center;
+  color: #4a2c4a;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"><text y="24" font-size="24">❤️</text></svg>') 16 0, auto;
+  /* เพิ่มฟอนต์และเคอร์เซอร์หัวใจ */
+}
+
+/* หัวข้อใหญ่ดูโดดเด่น มีเงานุ่มๆ */
+h1, h2 {
+  color: #d6336c;
+  animation: pop 0.8s ease-out;
+  text-shadow: 1px 1px 4px #ff9cc4;
+  margin-bottom: 12px;
+}
+
+/* ปุ่มกลมสวยหวาน เปลี่ยนสีสวยเมื่อ hover */
+button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #ff66a3, #ff2f6b);
+  color: white;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 600;
+  box-shadow: 0 6px 8px rgba(255, 102, 163, 0.6);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+button:hover {
+  background: linear-gradient(45deg, #e60058, #a60042);
+  box-shadow: 0 8px 15px rgba(230, 0, 88, 0.8);
+}
+
+/* อินพุตและ textarea ดูนุ่มนวล มีเงาและขนาดพอดี */
+input, textarea {
+  padding: 12px 15px;
+  border-radius: 15px;
+  border: 1.5px solid #f5a5c0;
+  width: 65%;
+  margin-bottom: 15px;
+  font-size: 1.05em;
+  box-shadow: inset 0 2px 5px rgba(255, 182, 211, 0.3);
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+input:focus, textarea:focus {
+  border-color: #d6336c;
+  box-shadow: 0 0 8px #d6336c66;
+}
+
+/* กล่อง quiz ดูเด่น มีเงานุ่ม และมุมโค้งมากขึ้น */
+.quiz-box {
+  background: #fff0f5;
+  padding: 30px 25px;
+  border-radius: 25px;
+  box-shadow: 0 10px 20px rgba(230, 0, 115, 0.15);
+  margin: 40px auto;
+  max-width: 620px;
+  color: #6a1b4d;
+  font-size: 1.15em;
+  font-weight: 500;
+}
+
+/* แกลเลอรีจัดเต็ม มีระยะห่างและเลย์เอาต์ยืดหยุ่น */
+.gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+  margin-top: 40px;
+}
+
+/* โพลารอยด์เพิ่มเงาลึกและมุมโค้งนุ่ม */
+.polaroid {
+  background: white;
+  padding: 15px 15px 30px;
+  box-shadow:
+    0 8px 15px rgba(0, 0, 0, 0.15),
+    0 0 12px rgba(230, 0, 115, 0.15);
+  border-radius: 12px;
+  width: 210px;
+  transform: rotate(var(--rotate));
+  animation: float 5s ease-in-out infinite;
+  transition: box-shadow 0.3s ease;
+  cursor: grab;
+}
+.polaroid:hover {
+  box-shadow:
+    0 12px 20px rgba(230, 0, 115, 0.4),
+    0 0 20px rgba(230, 0, 115, 0.35);
+  transform: scale(1.05) rotate(var(--rotate));
+}
+
+/* รูปในโพลารอยด์ทำมุมโค้งเล็กๆ */
+.polaroid img {
+  width: 100%;
+  border-radius: 8px;
+  user-select: none;
+}
+
+/* ข้อความคำบรรยายสีเทาเข้ม */
+.caption {
+  margin-top: 12px;
+  color: #6b5b70;
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* กล่องจดหมายรัก นุ่มและหวานมากขึ้น */
+.love-letter {
+  background: #ffd4e3;
+  padding: 25px 30px;
+  border-radius: 30px;
+  margin: 45px auto;
+  max-width: 650px;
+  color: #8b2a4a;
+  font-size: 1.1em;
+  box-shadow: 0 12px 25px rgba(255, 102, 163, 0.35);
+  animation: pop 0.9s ease-in;
+  font-weight: 500;
+}
+
+/* กล่องพิมพ์ตอบกลับ */
+.reply-box {
+  margin-top: 40px;
+}
+
+.volume-control {
+  margin: 20px auto;
+  max-width: 250px;
+  text-align: center;
+  font-family: 'Mali', cursive;
+  color: #cc0066;
+}
+
+#volumeSlider {
+  width: 100%;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* แอนิเมชัน float นุ่มขึ้น และช้าลง */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotate));
+  }
+  50% {
+    transform: translateY(-12px) rotate(calc(var(--rotate) + 3deg));
+  }
+}
+
+/* แอนิเมชัน pop อ่อนโยนและรวดเร็ว */
+@keyframes pop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* CSS สำหรับหัวใจลอย */
+.floating-heart {
+  position: fixed;
+  top: -25px;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px rgba(230,0,115,0.6));
+  animation-name: floatDownSmooth;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  animation-fill-mode: forwards;
+  z-index: 9999;
+}
+
+/* แอนิเมชันหัวใจลอยลง */
+@keyframes floatDownSmooth {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(20vh) rotate(15deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(40vh) rotate(-10deg);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translateY(70vh) rotate(10deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+/* CSS สำหรับหัวใจตอนคลิก */
+.click-heart {
+  position: fixed;
+  font-size: 28px;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(230,0,115,0.8));
+  animation: popAndFadeSmooth 1.2s ease forwards;
+  z-index: 9999;
+}
+
+/* แอนิเมชันหัวใจตอนคลิก (ขยายและลอยขึ้นแล้วจางหาย) */
+@keyframes popAndFadeSmooth {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40px) scale(1.4);
+    opacity: 0;
+  }
+}

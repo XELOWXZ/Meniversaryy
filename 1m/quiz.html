@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>💘 เกมคู่รักสุดน่ารัก 💘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mali&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ถ้าต้องการให้ปุ่มตัวเลือกมีขนาดเท่ากันและสวย */
+    #options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    #options button.option {
+      flex: 1 1 120px;
+      max-width: 180px;
+      transition: transform 0.2s ease;
+    }
+    #options button.option:hover:not(:disabled) {
+      transform: scale(1.05);
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 1.2em;
+      font-weight: 600;
+      color: #d6336c;
+      min-height: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💘 บททดสอบ 💘</h1>
+
+  <div class="quiz-box" id="quizBox">
+    <div class="question" id="question">...</div>
+    <div id="options"></div>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      {
+        question: "เค้าชอบกินอะไรที่สุด?",
+        options: ["ทาร์ตไข่", "ชานมไข่มุก", "หมูกระทะ", "ไอติม"],
+        answer: "ทาร์ตไข่"
+      },
+      {
+        question: "วันครบรอบของเราคือวันที่เท่าไหร่จ๊ะ",
+        options: ["14 ก.พ.", "1 ม.ค.", "1 มิ.ย.", "12 ธ.ค."],
+        answer: "1 มิ.ย."
+      },
+      {
+        question: "เค้าชอบสีอะไร?",
+        options: ["ชมพู", "ดำ", "แดง", "น้ำเงิน"],
+        answer: "ดำ"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const resultEl = document.getElementById("result");
+
+    function loadQuestion() {
+      const q = questions[currentQuestion];
+      questionEl.textContent = q.question;
+      optionsEl.innerHTML = "";
+
+      q.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.className = "option";
+        btn.onclick = () => checkAnswer(option, btn);
+        optionsEl.appendChild(btn);
+      });
+
+      resultEl.textContent = "";
+    }
+
+    function checkAnswer(selected, btn) {
+      Array.from(optionsEl.children).forEach(b => b.disabled = true);
+
+      if (selected === questions[currentQuestion].answer) {
+        score++;
+        btn.style.backgroundColor = "#00c851"; // เขียว
+        btn.style.boxShadow = "0 8px 20px #00c851aa";
+      } else {
+        btn.style.backgroundColor = "#ff4444"; // แดง
+        btn.style.boxShadow = "0 8px 20px #ff4444aa";
+
+        Array.from(optionsEl.children).forEach(b => {
+          if (b.textContent === questions[currentQuestion].answer) {
+            b.style.backgroundColor = "#00c851";
+            b.style.boxShadow = "0 8px 20px #00c851aa";
+          }
+        });
+      }
+
+      setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+          loadQuestion();
+        } else {
+          endGame();
+        }
+      }, 1500);
+    }
+
+    function endGame() {
+      if (score === questions.length) {
+        resultEl.textContent = "💖 ตอบถูกทั้งหมด! กำลังพาไปยังความทรงจำของเรา...";
+        setTimeout(() => {
+          window.location.href = "memories.html";
+        }, 2500);
+      } else {
+        resultEl.innerHTML = `
+          😢 ตอบผิดนิดนึง ลองใหม่อีกครั้งนะ! <br>
+          <button onclick="restartQuiz()" style="
+            margin-top:20px; padding: 12px 30px; border:none; border-radius: 25px;
+            background:#e60073; color:#fff; font-size:1.1em; cursor:pointer;
+            box-shadow:0 6px 15px rgba(230,0,115,0.7);
+            transition:background 0.3s;">เริ่มใหม่</button>
+        `;
+      }
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      loadQuestion();
+      resultEl.textContent = "";
+    }
+
+    loadQuestion();
+  </script>
+
+</body>
+</html>
